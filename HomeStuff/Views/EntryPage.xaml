@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HomeStuff.Views.EntryPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Xin chào đến với MyThings!" 
+                x:Name="Label"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="21"
+                VerticalOptions="CenterAndExpand" />
+            <Label  
+                x:Name="status"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="17"
+                VerticalOptions="CenterAndExpand" />
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Text="Nhập username:" Grid.Row="0" Grid.Column="0"/>
+                <Entry x:Name="username_text" Grid.Row="0" Grid.Column="1"/>
+                <Label Text="Nhập password:" Grid.Row="1" Grid.Column="0"/>
+                <Entry x:Name="pass_text" Grid.Row="1" Grid.Column="1" IsPassword="True"/>
+            </Grid>
+            <Button Text="Theo dõi" 
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold"
+                    VerticalOptions="CenterAndExpand"
+                    Clicked="NextPageHandler"
+                />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

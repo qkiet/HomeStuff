@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:HomeStuff.Views"
+             x:Class="HomeStuff.Views.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <CollectionView ItemsSource="{Binding Device}"
+                        IsGrouped="true">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0"
+                               Grid.Row="0"
+                               Text="Humid: " 
+                               FontAttributes="Bold" 
+                               IsVisible="{Binding Humid,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                        <Label Grid.Column="1" 
+                               Grid.Row="0"
+                               Text="{Binding Humid}" 
+                               IsVisible="{Binding Humid,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                        <Label Grid.Row="1"
+                               Grid.Column="0" 
+                               Text="Id: "
+                               FontAttributes="Bold" 
+                               IsVisible="{Binding Id,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                        <Label Grid.Row="1"
+                               Grid.Column="1" 
+                               Text="{Binding Id}"
+                               IsVisible="{Binding Id,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Name}"
+                           BackgroundColor="LightGray"
+                           FontSize="Large"
+                           FontAttributes="Bold" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.GroupFooterTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Button Text="Where?" Command="{Binding ButtonCommand}"/>
+                        <Label Grid.Row="1"
+                                   Grid.Column="1" 
+                                   Text="{Binding Status}"
+                                   IsVisible="{Binding Status,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.GroupFooterTemplate>
+        </CollectionView>
+        <Label x:Name="status"/>
+    </StackLayout>
+
+</ContentPage>
