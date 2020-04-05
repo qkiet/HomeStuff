@@ -27,7 +27,7 @@
                                        IsVisible="{Binding Humid, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                                 <Label Text = "{Binding Temperature, StringFormat='Temperature is {0:S}'}" FontSize="24" 
                                        IsVisible="{Binding Temperature, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                                <Button Text="Feed" Command="{Binding FeedCommand}" IsVisible="{Binding IsFeed}"/>
+                                <Button Text="Feed Now" Command="{Binding FeedCommand}" IsVisible="{Binding IsFeed}"/>
                                 <Button Text="Where?" Command="{Binding WhereCommand}"/>
                             </StackLayout>
                         </StackLayout>

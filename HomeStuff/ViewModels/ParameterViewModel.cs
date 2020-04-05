@@ -56,7 +56,7 @@ namespace CollectionViewDemos.ViewModels
                                 await mqttClient.ConnectAsync(options, CancellationToken.None);
                                 var message = new MqttApplicationMessageBuilder()
                                 .WithTopic(command_topic)
-                                .WithPayload("feed")
+                                .WithPayload("FEED")
                                 .Build();
                                 Console.WriteLine("Sending command to topic " + command_topic);
                                 await mqttClient.PublishAsync(message);
