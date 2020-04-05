@@ -12,62 +12,38 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
-        <CollectionView ItemsSource="{Binding Device}"
-                        IsGrouped="true">
-            <CollectionView.ItemTemplate>
+        <Label x:Name="scanning_status" Text="Scanning..."/>
+        <Label x:Name="scanning_result" Text="{Binding number_of_devices}"/>
+        <ActivityIndicator IsRunning="true" x:Name="indicator"/>
+        <ListView  x:Name="lstView" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0"
-                               Grid.Row="0"
-                               Text="Humid: " 
-                               FontAttributes="Bold" 
-                               IsVisible="{Binding Humid,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                        <Label Grid.Column="1" 
-                               Grid.Row="0"
-                               Text="{Binding Humid}" 
-                               IsVisible="{Binding Humid,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                        <Label Grid.Row="1"
-                               Grid.Column="0" 
-                               Text="Id: "
-                               FontAttributes="Bold" 
-                               IsVisible="{Binding Id,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                        <Label Grid.Row="1"
-                               Grid.Column="1" 
-                               Text="{Binding Id}"
-                               IsVisible="{Binding Id,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                    </Grid>
+                    <ViewCell>
+                        <StackLayout>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text = "{Binding Name, StringFormat='Name is {0:S}'}" FontSize="24" 
+                                       IsVisible="{Binding Name, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                <Label Text = "{Binding Humid, StringFormat='Humid is {0:S}'}" FontSize="24" 
+                                       IsVisible="{Binding Humid, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                <Label Text = "{Binding Temperature, StringFormat='Temperature is {0:S}'}" FontSize="24" 
+                                       IsVisible="{Binding Temperature, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                <Button Text="Feed" Command="{Binding FeedCommand}" IsVisible="{Binding IsFeed}"/>
+                                <Button Text="Where?" Command="{Binding WhereCommand}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
-            <CollectionView.GroupHeaderTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding Name}"
-                           BackgroundColor="LightGray"
-                           FontSize="Large"
-                           FontAttributes="Bold" />
-                </DataTemplate>
-            </CollectionView.GroupHeaderTemplate>
-            <CollectionView.GroupFooterTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Button Text="Where?" Command="{Binding ButtonCommand}"/>
-                        <Label Grid.Row="1"
-                                   Grid.Column="1" 
-                                   Text="{Binding Status}"
-                                   IsVisible="{Binding Status,Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.GroupFooterTemplate>
-        </CollectionView>
-        <Label x:Name="status"/>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
+    <!--<StackLayout>
+       
+
+
+    </StackLayout>-->
+    
+    
+    
+    
 
 </ContentPage>

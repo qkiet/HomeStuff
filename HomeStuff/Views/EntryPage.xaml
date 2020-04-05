@@ -28,8 +28,8 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Label Text="Nhập username:" Grid.Row="0" Grid.Column="0"/>
-                <Entry x:Name="username_text" Grid.Row="0" Grid.Column="1"/>
+                <Label Text="Nhập Network ID:" Grid.Row="0" Grid.Column="0"/>
+                <Entry x:Name="network_id_text" Grid.Row="0" Grid.Column="1"/>
                 <Label Text="Nhập password:" Grid.Row="1" Grid.Column="0"/>
                 <Entry x:Name="pass_text" Grid.Row="1" Grid.Column="1" IsPassword="True"/>
             </Grid>
