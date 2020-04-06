@@ -12,25 +12,42 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
-        <Label x:Name="scanning_status" Text="Scanning..."/>
+        <Label x:Name="scanning_status" Text="Đang scan..."/>
         <Label x:Name="scanning_result" Text="{Binding number_of_devices}"/>
         <ActivityIndicator IsRunning="true" x:Name="indicator"/>
         <ListView  x:Name="lstView" VerticalOptions="FillAndExpand" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text = "{Binding Name, StringFormat='Name is {0:S}'}" FontSize="24" 
-                                       IsVisible="{Binding Name, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                                <Label Text = "{Binding Humid, StringFormat='Humid is {0:S}'}" FontSize="24" 
-                                       IsVisible="{Binding Humid, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                                <Label Text = "{Binding Temperature, StringFormat='Temperature is {0:S}'}" FontSize="24" 
-                                       IsVisible="{Binding Temperature, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                                <Button Text="Feed Now" Command="{Binding FeedCommand}" IsVisible="{Binding IsFeed}"/>
-                                <Button Text="Where?" Command="{Binding WhereCommand}"/>
-                            </StackLayout>
-                        </StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="Tên thiết bị: " FontSize="24" TextColor="Red"/>
+                                
+                                <Label Grid.Row="0" Grid.Column="1" Text = "{Binding Name}" FontSize="24" />
+                                
+                                <Label Grid.Row="1" Grid.Column="0" Text="Độ ẩm: " FontSize="18" TextColor="Blue" 
+                                       IsVisible="{Binding IsHumid}"/>
+                                
+                                <Label Grid.Row="1" Grid.Column="1" Text = "{Binding Humid}" FontSize="18"/>
+                                
+                                <Label Grid.Row="2" Grid.Column="0" Text="Nhiệt độ: " FontSize="18" TextColor="Blue"
+                                       IsVisible="{Binding IsTemperature}"/>
+
+                                <Label Grid.Row="2" Grid.Column="1" Text = "{Binding Temperature}" FontSize="18"/>
+                                <Button Grid.Row="3" Grid.Column="0" Text="Cho cá ăn ngay" Command="{Binding FeedCommand}" IsVisible="{Binding IsFeed}"/>
+                            <Button Grid.Row="4" Grid.Column="0" Text="Nó ở đâu?" Command="{Binding WhereCommand}"/>
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

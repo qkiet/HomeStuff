@@ -7,7 +7,7 @@
              x:Class="HomeStuff.Views.EntryPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Xin chào đến với MyThings!" 
+            <Label Text="Xin chào đến với HomeStuff!" 
                 x:Name="Label"
                 HorizontalOptions="Center"
                 FontAttributes="Bold"

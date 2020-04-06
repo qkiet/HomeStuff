@@ -110,7 +110,7 @@ namespace HomeStuff.Views
                         });
                         device_list.Add(elements[2]);
                         Console.WriteLine("Total devices: " + devices.Count().ToString());
-                        MainThread.BeginInvokeOnMainThread(() => scanning_result.Text = "Found " + devices.Count().ToString() + " devices");
+                        MainThread.BeginInvokeOnMainThread(() => scanning_result.Text = "Tìm thấy " + devices.Count().ToString() + " thiết bị");
                     }
                 }
             });
@@ -177,7 +177,7 @@ namespace HomeStuff.Views
                 }
                 Console.WriteLine("Payload is " + device_payload + ". Index is " + index + ". ID is " + device_id);
             });
-            scanning_status.Text = "Done";
+            scanning_status.Text = "Đã xong";
             indicator.IsRunning = false;
             lstView.ItemsSource = devices;
 

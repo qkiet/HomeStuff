@@ -16,14 +16,25 @@ namespace CollectionViewDemos.ViewModels
     public class ParameterViewModel : INotifyPropertyChanged
     {
         string _name;
+
         string _humid;
+        bool _ishumid = false;
+ 
         string _temperature;
+        bool _istemp = false;
+
         string _id;
+
         string _netid;
+
         string _mqttserver;
+
         bool _isfeed = false;
+
         int _mqttport;
+
         List<string> _tracked_parameter;
+
         List<string> _data_receive = new List<string>();
 
         public List<string> Tracked_Parameter
@@ -39,7 +50,14 @@ namespace CollectionViewDemos.ViewModels
                     _tracked_parameter = value;
                     for (int i = 0; i < _tracked_parameter.Count; i++)
                     {
-                        
+                        if (_tracked_parameter[i] == "humid")
+                        {
+                            _ishumid = true;
+                        }
+                        if (_tracked_parameter[i] == "temp")
+                        {
+                            _istemp = true;
+                        }
                         if (_tracked_parameter[i] == "c_feed")
                         {
                             _isfeed = true;
@@ -171,7 +189,37 @@ namespace CollectionViewDemos.ViewModels
             }
         }
 
+        public bool IsHumid
+        {
+            get
+            {
+                return _ishumid;
+            }
+            set
+            {
+                if (_ishumid != value)
+                {
+                    _ishumid = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
+        public bool IsTemperature
+        {
+            get
+            {
+                return _istemp;
+            }
+            set
+            {
+                if (_istemp != value)
+                {
+                    _istemp = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
         public string ID
         {
             get
