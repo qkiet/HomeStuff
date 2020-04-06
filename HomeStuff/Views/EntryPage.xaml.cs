@@ -19,7 +19,6 @@ namespace HomeStuff.Views
 
         async void NextPageHandler(object sender, EventArgs e)
         {
-            status.Text = "new page";
 
             await Navigation.PushAsync(new MainPage(network_id_text.Text, pass_text.Text));
         }
