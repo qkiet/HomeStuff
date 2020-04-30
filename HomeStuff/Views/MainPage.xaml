@@ -12,8 +12,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
-        <Label x:Name="scanning_status" Text="Đang scan..."/>
-        <Label x:Name="scanning_result" Text="{Binding number_of_devices}"/>
+        <Label x:Name="scanning_status" Text="Đang scan..." FontSize="18"/>
+        <Label x:Name="scanning_result" Text="" FontSize="18" TextColor="Green"/>
         <ActivityIndicator IsRunning="true" x:Name="indicator"/>
         <ListView  x:Name="lstView" VerticalOptions="FillAndExpand" HasUnevenRows="True">
             <ListView.ItemTemplate>

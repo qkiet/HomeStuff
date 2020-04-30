@@ -33,8 +33,7 @@ namespace HomeStuff.Views
     }
     public partial class MainPage : ContentPage
     {
-        private const string MyTopic = "myTopic";
-        private const string MQTTServerUrl = "broker.hivemq.com";
+        private const string MQTTServerUrl = "test.mosquitto.org";
         private const int MQTTPort = 1883;
         string net_id, pass, topic_device_dack, topic_device_scan;
         List<string> device_list = new List<string>();
@@ -139,6 +138,7 @@ namespace HomeStuff.Views
             Console.WriteLine("Sending message to topic " + topic_device_scan);
             await mqttClient.PublishAsync(message);
             Console.WriteLine($"### SENT MESSAGE {Encoding.UTF8.GetString(message.Payload)} TO SERVER ");
+            Console.WriteLine("Pass length is: " + pass.Length);
 
 
             await Task.Delay(7000);
