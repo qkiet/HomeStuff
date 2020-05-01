@@ -33,6 +33,39 @@ namespace CollectionViewDemos.ViewModels
 
         int _mqttport;
 
+        string _changenamebutton = "Đổi tên";
+        bool _isChangeName = false;
+
+        public bool IsChangeName
+        {
+            get
+            {
+                return _isChangeName;
+            }
+            set
+            {
+                if (_isChangeName != value)
+                {
+                    _isChangeName = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        public string ChangeNameButton
+        {
+            get
+            {
+                return _changenamebutton;
+            }
+            set
+            {
+                if (_changenamebutton != value)
+                {
+                    _changenamebutton = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
         List<string> _tracked_parameter;
 
         List<string> _data_receive = new List<string>();
@@ -280,8 +313,11 @@ namespace CollectionViewDemos.ViewModels
         public ICommand FeedCommand { get; set; }
 
         public ICommand WhereCommand { get; set; }
+
+        public ICommand ChangeNameCommand { get; set; }
         public ParameterViewModel()
         {
+
             WhereCommand = new Command<string>(async(a) => 
             {
                 string command_topic = _netid + "/" + _id + "/command";
@@ -301,6 +337,40 @@ namespace CollectionViewDemos.ViewModels
                 await mqttClient.PublishAsync(message);
                 await mqttClient.DisconnectAsync();
             });
+            ChangeNameCommand = new Command<string>(async (a) =>
+            {
+                if (!(IsChangeName))
+                {
+                    IsChangeName = true;
+                    ChangeNameButton = "Xác nhận";
+                }    
+                    
+                else
+                {
+                    string command_topic = _netid + "/" + _id + "/command";
+                    MqttFactory factory = new MqttFactory();
+                    // Create a new MQTT client.            
+                    var mqttClient = factory.CreateMqttClient();
+
+                    var options = new MqttClientOptionsBuilder()
+                    .WithTcpServer(MQTTServer, MQTTPort)
+                    .Build();
+                    await mqttClient.ConnectAsync(options, CancellationToken.None);
+                    var message = new MqttApplicationMessageBuilder()
+                    .WithTopic(command_topic)
+                    .WithPayload("NAME "+ Name)
+                    .Build();
+                    await mqttClient.PublishAsync(message);
+                    await mqttClient.DisconnectAsync();
+                    Console.WriteLine("Sending command to topic " + Name);
+                    IsChangeName = false;
+                    ChangeNameButton = "Đổi tên";
+                }    
+
+
+            });
+
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

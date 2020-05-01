@@ -33,6 +33,7 @@ namespace HomeStuff.Views
     }
     public partial class MainPage : ContentPage
     {
+        ViewCell lastCell;
         private const string MQTTServerUrl = "test.mosquitto.org";
         private const int MQTTPort = 1883;
         string net_id, pass, topic_device_dack, topic_device_scan;
@@ -47,6 +48,17 @@ namespace HomeStuff.Views
             InitializeComponent();
 
             devices = new ObservableCollection<ParameterViewModel>();
+        }
+        private void ViewCell_Tapped(object sender, System.EventArgs e)
+        {
+            if (lastCell != null)
+                lastCell.View.BackgroundColor = Color.Transparent;
+            var viewCell = (ViewCell)sender;
+            if (viewCell.View != null)
+            {
+                viewCell.View.BackgroundColor = Color.LightBlue;
+                lastCell = viewCell;
+            }
         }
         protected override async void OnAppearing()
         {
@@ -182,6 +194,7 @@ namespace HomeStuff.Views
             lstView.ItemsSource = devices;
 
         }
+
     }
 
     
