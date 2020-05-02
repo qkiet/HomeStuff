@@ -92,7 +92,7 @@ namespace HomeStuff.Views
                 //payload format: DACK Name ID field1 field2...
                 Console.WriteLine("### RECEIVED DEVICE DACK ###");
                 string msg_payload = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
-                string[] elements = msg_payload.Split(' ');
+                string[] elements = msg_payload.Split(';');
                 List<string> ele_list = new List<string>(elements);
                 int dack_index = ele_list.FindIndex(a => a == "DACK");
                 if (ele_list[0] == "DACK") //is OUR data, let's processed
@@ -170,7 +170,7 @@ namespace HomeStuff.Views
                 string device_topic = e.ApplicationMessage.Topic; // The topic contain ID
                 string[] topic_ele = device_topic.Split('/');
                 string device_id = topic_ele[1]; //The ID stand in index 1
-                string[] elements = device_payload.Split(' ');
+                string[] elements = device_payload.Split(';');
                 List<string> ele_list = new List<string>(elements);
 
                 int index = -1;
