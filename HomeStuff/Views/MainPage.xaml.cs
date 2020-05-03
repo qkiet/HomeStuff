@@ -145,7 +145,7 @@ namespace HomeStuff.Views
             // Publishing messages  
             var message = new MqttApplicationMessageBuilder()
                 .WithTopic(topic_device_scan)
-                .WithPayload("HELLO? "+pass)
+                .WithPayload("HELLO?;"+pass)
                 .Build();
             Console.WriteLine("Sending message to topic " + topic_device_scan);
             await mqttClient.PublishAsync(message);
