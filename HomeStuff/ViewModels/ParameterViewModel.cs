@@ -180,7 +180,13 @@ namespace CollectionViewDemos.ViewModels
         {
             get
             {
-                return _humid;
+                int humid_raw = int.Parse(_humid);
+                double humid_result = 100*(13.24 - 0.002576 * humid_raw + 0.0000001726 * Math.Pow(humid_raw, 2) - 0.000000000003839 * Math.Pow(humid_raw, 3));
+                if (humid_result < 0)
+                    humid_result = 0;
+                if (humid_result > 100)
+                    humid_result = 100;
+                return String.Format("{0:0.00}%", humid_result);
             }
             set
             {
@@ -191,6 +197,7 @@ namespace CollectionViewDemos.ViewModels
                 }
             }
         }
+
         public string Temperature
         {
             get

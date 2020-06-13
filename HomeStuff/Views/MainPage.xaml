@@ -40,8 +40,8 @@
                             <Button Grid.Row="0" Grid.Column="2" Text="{Binding ChangeNameButton}" Command="{Binding ChangeNameCommand}"/>
                             <Label Grid.Row="1" Grid.Column="0" Text="Độ ẩm: " FontSize="18" TextColor="Blue" 
                                        IsVisible="{Binding IsHumid}"/>
-                                
-                                <Label Grid.Row="1" Grid.Column="1" Text = "{Binding Humid}" FontSize="18"/>
+
+                            <Label Grid.Row="1" Grid.Column="1" Text = "{Binding Humid}" FontSize="18"/>
                                 
                                 <Label Grid.Row="2" Grid.Column="0" Text="Nhiệt độ: " FontSize="18" TextColor="Blue"
                                        IsVisible="{Binding IsTemperature}"/>
